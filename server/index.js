@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.use('/requests', router);
+app.use('/app', router);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
