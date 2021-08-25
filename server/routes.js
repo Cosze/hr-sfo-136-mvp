@@ -8,12 +8,13 @@ router.route('/')
   });
 
 router.route('/clients/:id')
-  .get()
-  .post()
-  .put();
+  .get() // gets requests made by client at :id
+  .post() // posts a new request to database
+  .put(); // updates a request for when editting is selected
+  .delete(); // deletes a request for when client cancels
 
 router.route('/servers/:id')
   .get() // use query completed=<boolean> to differentiate open vs completed requests
-  .put();
+  .put(); // uses query accept=<boolean> to differentiate an accept or cancel
 
 module.exports = router;
