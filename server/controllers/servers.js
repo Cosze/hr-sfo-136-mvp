@@ -4,7 +4,7 @@ module.exports = {
     getOpenRequests: async (req, res) => {
         // get open requests
         try {
-            const data = await models.servers.getRequests();
+            const data = models.servers.getRequests();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error getting open requests for server', e);
@@ -13,7 +13,7 @@ module.exports = {
     getCompletedRequests: async (req, res) => {
         // get completed requests
         try {
-            const data = await models.servers.getCompleted();
+            const data = models.servers.getCompleted();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error getting completed requests for server', e);
@@ -22,7 +22,7 @@ module.exports = {
     acceptRequest: async (req, res) => {
         // accept a request
         try {
-            const data = await models.servers.acceptRequest();
+            const data = models.servers.acceptRequest();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error accepting requests for server', e);
@@ -31,7 +31,7 @@ module.exports = {
     startRequest: async (req, res) => {
         // start a request
         try {
-            const data = await models.servers.startRequest();
+            const data = models.servers.startRequest();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error starting request for server', e);
@@ -40,7 +40,7 @@ module.exports = {
     completeRequest: async (req, res) => {
         // complete request
         try {
-            const data = await models.servers.completeRequest();
+            const data = models.servers.completeRequest();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error completing request for server', e);
@@ -49,7 +49,7 @@ module.exports = {
     cancel: async (req, res) => {
         // cancel a request
         try {
-            const data = await models.servers.cancel();
+            const data = models.servers.cancel();
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error cancelling request for server', e);

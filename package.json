@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Cosze/hr-sfo-136-mvp#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-promise-router": "^4.1.0",
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
     "react": "^17.0.2",
