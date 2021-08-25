@@ -6,5 +6,5 @@ module.exports = {
     acceptRequest: (requestID) => {}, // updates status of a request to accepted, updates server name and time accepted
     startRequest: (requestID) => {}, // updates status of a request to started, sets request start time
     completeRequest: (requestID) => {}, // updates status of a request to completed, sets request completed time
-    cancelRequest: (requestID) => {}, // updates status of a request to open, sets server name and time accepted to null
+    cancel: (requestID) => {}, // updates status of a request to open, sets server name and time accepted to null
 };
