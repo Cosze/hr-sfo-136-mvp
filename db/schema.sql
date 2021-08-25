@@ -19,7 +19,7 @@ CREATE TABLE requests(
   client_name VARCHAR(50) NOT NULL,
   room SMALLINT NOT NULL,
   server_name VARCHAR(50),
-  schedule BIGINT,
+  schedule BIGINT NOT NULL,
   time_accepted BIGINT,
   time_started BIGINT,
   time_completed BIGINT,
