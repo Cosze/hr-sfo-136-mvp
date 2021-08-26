@@ -30,7 +30,7 @@ export const cancelRequest = (requestID) => {
         url: `/app/clients/123?request_id=${requestID}`
     })
     .then(data => console.log(data))
-    .catch(e => alert('Error posting request', e));
+    .catch(e => alert('Error cancelling request for client', e));
 };
 
 export const updateRequest = (requestID, formData) => {
@@ -40,7 +40,7 @@ export const updateRequest = (requestID, formData) => {
         data: formData
     })
     .then(data => console.log(data))
-    .catch(e => alert('Error posting request', e));
+    .catch(e => alert('Error updating request', e));
 };
 
 /*=========================
@@ -52,7 +52,7 @@ export const getOpenRequests = (callback) => {
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error getting open requests', e));
 };
 
 export const getCompleteRequests = (server_name, callback) => {
@@ -60,7 +60,7 @@ export const getCompleteRequests = (server_name, callback) => {
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error getting complete requests', e));
 };
 
 export const acceptRequest = (server_name, request_id, callback) => {
@@ -68,7 +68,7 @@ export const acceptRequest = (server_name, request_id, callback) => {
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error accepting requests', e));
 };
 
 export const startRequest = (request_id, callback) => {
@@ -76,7 +76,7 @@ export const startRequest = (request_id, callback) => {
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error starting requests', e));
 };
 
 export const completeRequest = (request_id, callback) => {
@@ -84,13 +84,13 @@ export const completeRequest = (request_id, callback) => {
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error completing requests', e));
 };
 
-export const startRequest = (request_id, callback) => {
+export const cancelAccept = (request_id, callback) => {
     axios.put(`/app/servers/123/cancel?request_id=${request_id}`)
     .then(data => {
         callback(data.data);
     })
-    .catch(e => alert('Error getting requests', e));
+    .catch(e => alert('Error cancelling requests for server', e));
 };

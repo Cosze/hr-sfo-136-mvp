@@ -19,7 +19,7 @@ const Server = () => {
         <>
         <div>Server Name --- STATUS</div>
         <SubMain>
-        {completed ? <Task tasks={[finished, setFinished]}/> : <Task tasks={[tasks, setTasks]}/>}
+        {completed ? <Task tasks={[finished, setFinished]} who='server' /> : <Task tasks={[tasks, setTasks]} who='server' />}
         </SubMain>
         <div style={{display: 'flex'}}>
             <Tab onClick={() => {

@@ -14,7 +14,7 @@ const Client = () => {
         <>
         <div>Client</div>
         <SubMain>
-         {request ? <Form /> : <Task tasks={[tasks, setTasks]}/>}
+         {request ? <Form /> : <Task tasks={[tasks, setTasks]} who='client' refresh={getRequest}/>}
         </SubMain>
 
         <div style={{display: 'flex'}}>

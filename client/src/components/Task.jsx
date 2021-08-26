@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import {} from './requests';
+import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept} from './requests';
 import { Taskbox, Status } from './Styled';
 
 const customStyles = {
@@ -14,7 +14,7 @@ const customStyles = {
     },
   };
 
-const Task = ({tasks}) => {
+const Task = ({tasks, who, refresh}) => {
     const [selection, setSelection] = useState({});
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -53,6 +53,23 @@ const Task = ({tasks}) => {
                     <li>tip - {selection.tip}</li>
                 </ul>
                 <button onClick={closeModal}>close</button>
+                {/*
+                if client,
+                    if status = open, needs cancel button (optional edit)
+                    else have a telephone icon/button
+                */}
+                {who === 'client' ? <button onClick={() => {
+                    cancelRequest(selection.id);
+                    refresh('mark', tasks[1]);
+                    closeModal();
+                    }}>Cancel request</button> : null}
+                {/*if server:
+                    if viewing completed requests: simply a close button
+                    open requests 3 stages
+                    confirm (triggers accepted) & cancel buttons
+                    confirm button becomes start button (started), cancel button removed
+                    start button becomes completed button (completed)
+                */}
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
