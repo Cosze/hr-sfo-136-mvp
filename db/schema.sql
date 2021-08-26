@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS mvp;
-CREATE DATABASE mvp;
+DROP DATABASE IF EXISTS cleanroom;
+CREATE DATABASE cleanroom;
 
-\c mvp;
+\c cleanroom;
 
 -- CREATE TABLE clients(
 --   id SERIAL PRIMARY KEY,
@@ -24,7 +24,8 @@ CREATE TABLE requests(
   time_started BIGINT,
   time_completed BIGINT,
   preferences VARCHAR(500),
-  tip SMALLINT
+  tip SMALLINT DEFAULT 0,
+  status VARCHAR(20) DEFAULT 'open'
 );
 
 -- ALTER TABLE requests ADD FOREIGN KEY (client_id) REFERENCES clients(id);
