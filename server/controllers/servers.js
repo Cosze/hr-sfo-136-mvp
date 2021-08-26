@@ -4,8 +4,8 @@ module.exports = {
     getOpenRequests: async (req, res) => {
         // get open requests
         try {
-            const data = models.servers.getRequests();
-            res.status(200).send(data);
+            const data = await models.servers.getRequests();
+            res.status(200).send(data.rows);
         } catch (e) {
             res.status(500).send('Error getting open requests for server', e);
         }

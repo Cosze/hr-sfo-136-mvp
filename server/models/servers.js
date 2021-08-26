@@ -3,8 +3,9 @@ const db = require('../../db/database.js');
 module.exports = {
     getRequests: (status) => {
         // gets open requests from database, sorted by scheduled time
-        db.query();
-        return `getting open requests from db for server`;
+        const query = `SELECT * FROM requests WHERE status = 'open' ORDER BY schedule ASC`;
+        return db.query(query);
+        // return `getting open requests from db for server`;
     },
     getCompleted: (serverID) => {
         // gets completed requests from database
