@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const SubMain = styled.div`
   position: relative;
-  max-height: 500px;
+  max-height: 450px;
+  margin: 1em 0;
   overflow: hidden;
   overflow-y: auto;
 
