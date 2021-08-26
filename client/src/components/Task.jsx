@@ -77,10 +77,24 @@ const Task = ({tasks, who, refresh}) => {
                     setProcess('accepted');
                     refresh.open(tasks[1]);
                 }}>Accept</button> : null}
-                {process === 'accepted' ? <button onClick={() => {
+                {process === 'accepted' ? <>
+                <button onClick={() => {
                     startRequest(selection.id);
                     setProcess('started');
-                }}>Start</button> : null}
+                }}>Start</button>
+                <button onClick={() => {
+                    cancelAccept(selection.id);
+                    setProcess('open');
+                    refresh.open(tasks[1]);
+                    closeModal();
+                }}>cancel</button>
+                </> : null}
+                {process === 'started' ? <button onClick={() => {
+                    completeRequest(selection.id);
+                    setProcess('open');
+                    refresh.open(tasks[1]);
+                    closeModal();
+                }}>Complete</button> : null}
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
