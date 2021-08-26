@@ -8,7 +8,7 @@ const App = () => {
   return (
     <main>
       {/* Determine if client or server */}
-      {user ? user === 'client' ? <Client /> : <Server /> : <Welcome setUser={setUser} />}
+      {user ? user === 'guest' ? <Client /> : <Server /> : <Welcome setUser={setUser} />}
     </main>
   );
 };
