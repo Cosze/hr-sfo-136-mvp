@@ -22,7 +22,7 @@ module.exports = {
     acceptRequest: async (req, res) => {
         // accept a request
         try {
-            const { server_name, request_id } = req.query
+            const { server_name, request_id } = req.query;
             const data = await models.servers.acceptRequest(server_name, request_id);
             res.status(200).send('Server successfully accepted request');
         } catch (e) {
@@ -32,8 +32,9 @@ module.exports = {
     startRequest: async (req, res) => {
         // start a request
         try {
-            const data = models.servers.startRequest();
-            res.status(200).send(data);
+            const { request_id } = req.query;
+            const data = await models.servers.startRequest(request_id);
+            res.status(200).send('Server successfully started working on request');
         } catch (e) {
             res.status(500).send('Error starting request for server', e);
         }

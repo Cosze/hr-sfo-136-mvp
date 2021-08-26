@@ -21,8 +21,9 @@ module.exports = {
     },
     startRequest: (requestID) => {
         // updates status of a request to started, sets request start time
-        db.query();
-        return `server is starting a request`;
+        const query = `UPDATE requests SET status = 'started', time_started = ${Date.now()} WHERE id = ${requestID}`;
+        return db.query(query);
+        // return `server is starting a request`;
     },
     completeRequest: (requestID) => {
         // updates status of a request to completed, sets request completed time
