@@ -9,8 +9,9 @@ module.exports = {
     },
     getCompleted: (serverID) => {
         // gets completed requests from database
-        db.query();
-        return `getting completed requests from db for server`;
+        const query = `SELECT * FROM requests WHERE server_name = '${serverID}' AND status = 'completed' ORDER BY schedule DESC`;
+        return db.query(query);
+        // return `getting completed requests from db for server`;
     },
     acceptRequest: (requestID) => {
         // updates status of a request to accepted, updates server name and time accepted

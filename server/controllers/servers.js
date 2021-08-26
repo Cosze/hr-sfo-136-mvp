@@ -13,8 +13,8 @@ module.exports = {
     getCompletedRequests: async (req, res) => {
         // get completed requests
         try {
-            const data = models.servers.getCompleted();
-            res.status(200).send(data);
+            const data = await models.servers.getCompleted(req.query.server_name);
+            res.status(200).send(data.rows);
         } catch (e) {
             res.status(500).send('Error getting completed requests for server', e);
         }
