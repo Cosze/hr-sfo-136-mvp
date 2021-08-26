@@ -15,6 +15,8 @@ const Form = () => {
             formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
             postRequest(formProps);
         }}>
+            <h2>Schedule room cleaning</h2>
+
             <label>Name:
             <input type='text' name='client_name' required></input>
             </label>
