@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { postRequest } from './requests';
 import { Forms, Status } from './Styled';
@@ -16,7 +16,7 @@ const customStyles = {
 
 const Form = () => {
     let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal() {
       Modal.setAppElement(document.getElementById('app'));
@@ -51,6 +51,7 @@ const Form = () => {
                     formProps.preferences = formProps.preferences === '' ? null : formProps.preferences;
                     formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
                     postRequest(formProps);
+                    document.getElementById('form').reset();
                     closeModal();
                 }}>Confirm</button>
             </div>
