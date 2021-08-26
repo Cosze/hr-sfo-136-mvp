@@ -15,6 +15,7 @@ const customStyles = {
   };
 
 const Task = ({tasks, who, refresh}) => {
+    const [process, setProcess] = useState('open');
     const [selection, setSelection] = useState({});
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -48,11 +49,11 @@ const Task = ({tasks, who, refresh}) => {
                     <li>preferences - {selection.preferences}</li>
                     <li>server_name - {selection.server_name}</li>
                     <li>time_accepted - {selection.time_accepted}</li>
-                    <li>time_completed - {selection.time_completed}</li>
                     <li>time_started - {selection.time_started}</li>
+                    <li>time_completed - {selection.time_completed}</li>
                     <li>tip - {selection.tip}</li>
                 </ul>
-                <button onClick={closeModal}>close</button>
+                {process === 'open' ? <button onClick={closeModal}>close</button> : null}
                 {/*
                 if client,
                     if status = open, needs cancel button (optional edit)
@@ -71,10 +72,15 @@ const Task = ({tasks, who, refresh}) => {
                     confirm button becomes start button (started), cancel button removed
                     start button becomes completed button (completed)
                 */}
-                {who === 'server' ? <button onClick={() => {
+                {who === 'server' && process === 'open' ? <button onClick={() => {
                     acceptRequest('lemon', selection.id);
+                    setProcess('accepted');
                     refresh.open(tasks[1]);
-                    }}>Accept</button> : null}
+                }}>Accept</button> : null}
+                {process === 'accepted' ? <button onClick={() => {
+                    startRequest(selection.id);
+                    setProcess('started');
+                }}>Start</button> : null}
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
