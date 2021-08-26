@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import {} from './requests';
 import { Taskbox, Status } from './Styled';
 
 const customStyles = {
@@ -37,12 +38,11 @@ const Task = ({tasks}) => {
                 onAfterOpen={afterOpenModal}
                 style={customStyles}
                 contentLabel="Example Modal">
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-                <button onClick={closeModal}>close</button>
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
+                <div>status - {selection.status}</div>
                 <ul>
                     <li>id - {selection.id}</li>
                     <li>client_name - {selection.client_name}</li>
-                    <li>status - {selection.status}</li>
                     <li>room - {selection.room}</li>
                     <li>schedule - {selection.schedule}</li>
                     <li>preferences - {selection.preferences}</li>
@@ -52,6 +52,7 @@ const Task = ({tasks}) => {
                     <li>time_started - {selection.time_started}</li>
                     <li>tip - {selection.tip}</li>
                 </ul>
+                <button onClick={closeModal}>close</button>
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
