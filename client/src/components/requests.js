@@ -19,3 +19,19 @@ export const postRequest = (formData) => {
     .then(data => console.log(data))
     .catch(e => alert('Error posting request', e));
 };
+
+export const getOpenRequests = (callback) => {
+    axios.get(`/app/servers/123/open`)
+    .then(data => {
+        callback(data.data);
+    })
+    .catch(e => alert('Error getting requests', e));
+};
+
+export const getCompleteRequests = (server_name, callback) => {
+    axios.get(`/app/servers/123/completed?server_name=${server_name}`)
+    .then(data => {
+        callback(data.data);
+    })
+    .catch(e => alert('Error getting requests', e));
+};
