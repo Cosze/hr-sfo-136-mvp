@@ -11,7 +11,6 @@ module.exports = {
         const {client_name, room, schedule, tip} = data;
         let query = postQuery + (tip > 0 ? ', tip' : '');
         let values = `'${client_name}', ${room}, ${schedule}${(tip > 0 ? `, ${tip}` : '')}`;
-        console.log(values);
         await db.query(`INSERT INTO requests(${query}) VALUES(${values})`)
             .then(data => console.log('successful post request from client'))
             .catch(e => console.log('error in get', e));
@@ -23,10 +22,15 @@ module.exports = {
         const query = `SELECT * FROM requests WHERE client_name = '${client_name}'`;
         return db.query(query);
     },
-    updateRequest: (requestID) => {
+    updateRequest: (requestID, data) => {
         // function that edits a request that is either open (or accepted)
-        const query = `UPDATE requests SET  WHERE id = `;
-        db.query();
+        let formatSET = [];
+        for (let key in data) {
+            formatSET.push(`${key} = ${typeof data[key] === 'string' ? `'${data[key]}'` : data[key]}`);
+        }
+        let formattedSET = formatSET.join(', ');
+        const query = `UPDATE requests SET ${formattedSET} WHERE id = ${requestID}`;
+        db.query(query);
         return `client want to edit their previous request`;
     },
     cancelRequest: (userID, requestID) => {

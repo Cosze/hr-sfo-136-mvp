@@ -31,7 +31,7 @@ module.exports = {
     updateRequest: (req, res) => {
         // update an open or started request
         try {
-            const data = models.clients.updateRequest();
+            const data = models.clients.updateRequest(req.query.request_id, req.body);
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error updating request for client', e);
