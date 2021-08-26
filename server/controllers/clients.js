@@ -40,7 +40,7 @@ module.exports = {
     cancelRequest: (req, res) => {
         // cancel an open request
         try {
-            const data = models.clients.cancelRequest();
+            const data = models.clients.cancelRequest(req.query.request_id);
             res.status(200).send(data);
         } catch (e) {
             res.status(500).send('Error cancelling request for client', e);

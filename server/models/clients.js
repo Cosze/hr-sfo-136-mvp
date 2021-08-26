@@ -33,9 +33,9 @@ module.exports = {
         db.query(query);
         return `client want to edit their previous request`;
     },
-    cancelRequest: (userID, requestID) => {
+    cancelRequest: (requestID) => {
         // function that removes a request from database
-        db.query();
+        db.query(`DELETE FROM requests WHERE id = ${requestID}`);
         return `client wants to cancel their request`;
     },
 };
