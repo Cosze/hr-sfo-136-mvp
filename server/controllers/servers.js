@@ -52,8 +52,9 @@ module.exports = {
     cancel: async (req, res) => {
         // cancel a request
         try {
-            const data = models.servers.cancel();
-            res.status(200).send(data);
+            const { request_id } = req.query;
+            const data = models.servers.cancel(request_id);
+            res.status(200).send('Successfully cancelled request acceptance for server');
         } catch (e) {
             res.status(500).send('Error cancelling request for server', e);
         }

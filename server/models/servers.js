@@ -33,7 +33,8 @@ module.exports = {
     },
     cancel: (requestID) => {
         // updates status of a request to open, sets server name and time accepted to null
-        db.query();
+        const query = `UPDATE requests SET status = 'open', server_name = null, time_accepted = null WHERE id = ${requestID}`;
+        db.query(query);
         return `server has cancelled the request`;
     },
 };
