@@ -8,9 +8,10 @@ module.exports = {
     },
     postRequest: async (data) => {
         // function that posts a request into the database
-        const {client_name, room, schedule, tip} = data;
-        let query = postQuery + (tip > 0 ? ', tip' : '');
-        let values = `'${client_name}', ${room}, ${schedule}${(tip > 0 ? `, ${tip}` : '')}`;
+        const {client_name, room, schedule, tip, preferences} = data;
+        let query = postQuery + (tip > 0 ? ', tip' : '') + (preferences ? ', preferences' : '');
+        let values = `'${client_name}', ${room}, ${schedule}${(tip > 0 ? `, ${tip}` : '')}${(preferences ? `, '${preferences}'` : '')}`;
+        console.log(query, '\n',values);
         await db.query(`INSERT INTO requests(${query}) VALUES(${values})`)
             .then(data => console.log('successful post request from client'))
             .catch(e => console.log('error in get', e));
