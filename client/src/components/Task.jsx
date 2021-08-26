@@ -60,6 +60,7 @@ const Task = ({tasks, who, refresh}) => {
                 */}
                 {who === 'client' ? <button onClick={() => {
                     cancelRequest(selection.id);
+                    // console.log(refresh);
                     refresh('mark', tasks[1]);
                     closeModal();
                     }}>Cancel request</button> : null}
@@ -70,6 +71,10 @@ const Task = ({tasks, who, refresh}) => {
                     confirm button becomes start button (started), cancel button removed
                     start button becomes completed button (completed)
                 */}
+                {who === 'server' ? <button onClick={() => {
+                    acceptRequest('lemon', selection.id);
+                    refresh.open(tasks[1]);
+                    }}>Accept</button> : null}
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);

@@ -63,34 +63,22 @@ export const getCompleteRequests = (server_name, callback) => {
     .catch(e => alert('Error getting complete requests', e));
 };
 
-export const acceptRequest = (server_name, request_id, callback) => {
+export const acceptRequest = (server_name, request_id) => {
     axios.put(`/app/servers/123/accept?server_name=${server_name}&request_id=${request_id}`)
-    .then(data => {
-        callback(data.data);
-    })
     .catch(e => alert('Error accepting requests', e));
 };
 
-export const startRequest = (request_id, callback) => {
+export const startRequest = (request_id) => {
     axios.put(`/app/servers/123/start?request_id=${request_id}`)
-    .then(data => {
-        callback(data.data);
-    })
     .catch(e => alert('Error starting requests', e));
 };
 
-export const completeRequest = (request_id, callback) => {
+export const completeRequest = (request_id) => {
     axios.put(`/app/servers/123/complete?request_id=${request_id}`)
-    .then(data => {
-        callback(data.data);
-    })
     .catch(e => alert('Error completing requests', e));
 };
 
-export const cancelAccept = (request_id, callback) => {
+export const cancelAccept = (request_id) => {
     axios.put(`/app/servers/123/cancel?request_id=${request_id}`)
-    .then(data => {
-        callback(data.data);
-    })
     .catch(e => alert('Error cancelling requests for server', e));
 };
