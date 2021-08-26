@@ -1,4 +1,5 @@
 import React from 'react';
+import { postRequest } from './requests';
 import { Forms, Status } from './Styled';
 
 const Form = () => {
@@ -12,7 +13,7 @@ const Form = () => {
             formProps.schedule = Date.parse(formProps.schedule);
             formProps.preferences = formProps.preferences === '' ? null : formProps.preferences;
             formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
-            console.log(formProps);
+            postRequest(formProps);
         }}>
             <label>Name:
             <input type='text' name='client_name' required></input>
