@@ -33,21 +33,20 @@ const Task = ({tasks}) => {
     return (
         <div>
             <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                style={customStyles}
+                contentLabel="Example Modal">
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+                <button onClick={closeModal}>close</button>
+                <div>I am a modal</div>
+                <form>
+                <input />
+                <button>tab navigation</button>
+                <button>stays</button>
+                <button>inside</button>
+                <button>the modal</button>
+                </form>
              </Modal>
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
