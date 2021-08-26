@@ -6,10 +6,11 @@ import Server from './Server.jsx';
 const App = () => {
   const [user, setUser] = useState(null);
   return (
-    <main>
+    <main style={{maxWidth: '400px', minHeight: '600px', backgroundColor:'#999', margin: '100px auto', position: 'relative',}}>
       {/* Determine if client or server */}
       {user ? user === 'guest' ? <Client /> : <Server /> : <Welcome setUser={setUser} />}
-      <button onClick={() => setUser(null)}>Logout</button>
+      {user ? <button style={{position: 'absolute', top: '1%', right:'2%',}}
+      onClick={() => setUser(null)}>Logout</button> : null}
     </main>
   );
 };

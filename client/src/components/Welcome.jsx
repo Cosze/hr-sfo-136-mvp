@@ -4,9 +4,9 @@ const Welcome = (props) => {
     const { setUser } = props;
     return (
         <div>
-            <h1>Welcome!</h1>
-            <div style={{border: "1px solid red", padding: "1em"}} onClick={() => setUser('guest')}>Guest</div>
-            <div style={{border: "1px solid blue", padding: "1em"}} onClick={() => setUser('server')}>Server</div>
+            <h1 style={{margin: '1em auto', textAlign: 'center'}}>Welcome!</h1>
+            <div style={{backgroundColor: "green", padding: "1em", margin: '0 auto 1em', textAlign: 'center', maxWidth: '70%'}} onClick={() => setUser('guest')}>Guest</div>
+            <div style={{backgroundColor: "purple", padding: "1em", margin: '0 auto 1em', textAlign: 'center', maxWidth: '70%'}} onClick={() => setUser('server')}>Server</div>
         </div>
     );
 }
