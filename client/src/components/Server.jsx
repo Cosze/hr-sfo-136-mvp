@@ -21,7 +21,7 @@ const Server = () => {
         <SubMain>
         {completed ? <Task tasks={[finished, setFinished]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}}/> : <Task tasks={[tasks, setTasks]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}} />}
         </SubMain>
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', width: '70%', justifyContent: 'space-evenly', position: 'absolute', bottom: '5%', right:'15%'}}>
             <Tab onClick={() => {
                 getOpenRequests(setTasks);
                 setCompleted(false);

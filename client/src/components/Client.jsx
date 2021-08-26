@@ -17,7 +17,7 @@ const Client = () => {
          {request ? <Form /> : <Task tasks={[tasks, setTasks]} who='client' refresh={getRequest}/>}
         </SubMain>
 
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', width: '70%', justifyContent: 'space-evenly', position: 'absolute', bottom: '5%', right:'15%'}}>
             <Tab onClick={() => {
                 setRequest(false);
                 getRequest('mark', setTasks);

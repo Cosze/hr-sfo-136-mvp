@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { postRequest } from './requests';
-import { Forms, Status } from './Styled';
+import { Forms, Status, Input } from './Styled';
 
 const customStyles = {
     content: {
@@ -41,8 +41,8 @@ const Form = () => {
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Confirmation Window</h2>
             <div>Ready to submit?</div>
             <div style={{display: 'flex'}}>
-                <button onClick={closeModal}>Cancel</button>
-                <button onClick={() => {
+                <button onClick={closeModal} style={{cursor:'pointer'}}>Cancel</button>
+                <button style={{cursor:'pointer'}} onClick={() => {
                     const formData = new FormData(document.getElementById('form'));
                     const formProps = Object.fromEntries(formData);
                     // convert data into proper format for HTTP request
@@ -61,38 +61,30 @@ const Form = () => {
             onSubmit={ev => {
                 ev.preventDefault();
                 openModal();
-                // const formData = new FormData(ev.target);
-                // const formProps = Object.fromEntries(formData);
-                // // convert data into proper format for HTTP request
-                // formProps.room = Number(formProps.room);
-                // formProps.schedule = Date.parse(formProps.schedule);
-                // formProps.preferences = formProps.preferences === '' ? null : formProps.preferences;
-                // formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
-                // postRequest(formProps);
         }}>
             <h2>Schedule room cleaning</h2>
 
-            <label>Name:
-            <input type='text' name='client_name' required></input>
+            <label>Name: <br/>
+              <Input type='text' name='client_name' required></Input>
             </label>
 
-            <label>Room number:
-            <input type='number' name='room' required></input>
+            <label>Room number:<br/>
+              <Input type='number' name='room' required></Input>
             </label>
 
-            <label>Scheduled time:
-            <input type='datetime-local' name='schedule' required></input>
+            <label>Scheduled time:<br/>
+              <Input type='datetime-local' name='schedule' required></Input>
             </label>
 
-            <label>Additional details:
-            <textarea name='preferences' rows='4' cols='50'></textarea>
+            <label>Additional details:<br/>
+              <textarea name='preferences' rows='4' cols='35'></textarea>
             </label>
 
-            <label>Optional tip:
-            <input type='number' name='tip'></input>
+            <label>Optional tip:<br/>
+              <Input type='number' name='tip'></Input>
             </label>
 
-            <Status as='button'>Submit</Status>
+            <Status as='button' style={{cursor:'pointer'}}>Submit</Status>
         </Forms>
         </>
     );
