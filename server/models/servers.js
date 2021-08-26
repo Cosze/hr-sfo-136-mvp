@@ -27,8 +27,9 @@ module.exports = {
     },
     completeRequest: (requestID) => {
         // updates status of a request to completed, sets request completed time
-        db.query();
-        return `server is completing a request`;
+        const query = `UPDATE requests SET status = 'completed', time_completed = ${Date.now()} WHERE id = ${requestID}`;
+        return db.query(query);
+        // return `server is completing a request`;
     },
     cancel: (requestID) => {
         // updates status of a request to open, sets server name and time accepted to null

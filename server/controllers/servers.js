@@ -42,8 +42,9 @@ module.exports = {
     completeRequest: async (req, res) => {
         // complete request
         try {
-            const data = models.servers.completeRequest();
-            res.status(200).send(data);
+            const { request_id } = req.query;
+            const data = await models.servers.completeRequest(request_id);
+            res.status(200).send('Server successfully completed the assigned request');
         } catch (e) {
             res.status(500).send('Error completing request for server', e);
         }
