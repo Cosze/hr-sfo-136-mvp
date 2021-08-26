@@ -9,6 +9,7 @@ const App = () => {
     <main>
       {/* Determine if client or server */}
       {user ? user === 'guest' ? <Client /> : <Server /> : <Welcome setUser={setUser} />}
+      <button onClick={() => setUser(null)}>Logout</button>
     </main>
   );
 };
