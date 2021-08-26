@@ -13,10 +13,11 @@ module.exports = {
         return db.query(query);
         // return `getting completed requests from db for server`;
     },
-    acceptRequest: (requestID) => {
+    acceptRequest: (serverID, requestID) => {
         // updates status of a request to accepted, updates server name and time accepted
-        db.query();
-        return `server is accepting a request`;
+        const query = `UPDATE requests SET status = 'accepted', server_name = '${serverID}', time_accepted = ${Date.now()} WHERE id = ${requestID}`;
+        return db.query(query);
+        // return `server is accepting a request`;
     },
     startRequest: (requestID) => {
         // updates status of a request to started, sets request start time

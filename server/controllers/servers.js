@@ -22,8 +22,9 @@ module.exports = {
     acceptRequest: async (req, res) => {
         // accept a request
         try {
-            const data = models.servers.acceptRequest();
-            res.status(200).send(data);
+            const { server_name, request_id } = req.query
+            const data = await models.servers.acceptRequest(server_name, request_id);
+            res.status(200).send('Server successfully accepted request');
         } catch (e) {
             res.status(500).send('Error accepting requests for server', e);
         }

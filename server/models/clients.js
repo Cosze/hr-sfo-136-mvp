@@ -19,7 +19,7 @@ module.exports = {
     getRequests: (userID) => {
         // function that gets all requests made by this user
         const { client_name } = userID;
-        const query = `SELECT * FROM requests WHERE client_name = '${client_name}'`;
+        const query = `SELECT * FROM requests WHERE client_name = '${client_name}' ORDER BY schedule ASC`;
         return db.query(query);
     },
     updateRequest: (requestID, data) => {
