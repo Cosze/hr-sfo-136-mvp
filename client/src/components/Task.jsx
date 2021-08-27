@@ -43,15 +43,15 @@ const Task = ({tasks, who, refresh}) => {
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
                 <Taskbox><span style={{margin:'0 1em'}}>{selection.schedule ? convertTime(selection.schedule) : null}</span><Status>{selection.status}</Status></Taskbox>
                 <ul>
-                    <li>id - {selection.id}</li>
-                    <li>client_name - {selection.client_name}</li>
-                    <li>room - {selection.room}</li>
-                    <li>schedule - {selection.schedule}</li>
-                    <li>preferences - {selection.preferences}</li>
-                    <li>server_name - {selection.server_name}</li>
-                    <li>time_accepted - {selection.time_accepted}</li>
-                    <li>time_started - {selection.time_started}</li>
-                    <li>time_completed - {selection.time_completed}</li>
+                    {/* <li>id - {selection.id}</li> */}
+                    <li>Name - {selection.client_name}</li>
+                    <li>Room - {selection.room}</li>
+                    {/* <li>schedule - {selection.schedule ? convertTime(selection.schedule) : null}</li> */}
+                    <li>Preferences - {selection.preferences}</li>
+                    <li>Cleaner - {selection.server_name}</li>
+                    <li>Accepted - {selection.time_accepted ? convertTime(selection.time_accepted) : null}</li>
+                    <li>Started - {selection.time_started ? convertTime(selection.time_started) : null}</li>
+                    <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
                 </ul>
                 {process === 'open' ? <button onClick={closeModal}>close</button> : null}
