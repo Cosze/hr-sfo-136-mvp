@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 export const SubMain = styled.div`
   position: relative;
-  max-height: 450px;
-  margin: 1em 0;
+  height: 450px;
+  width: 80%;
+  margin: 1em auto;
+  padding: 1em;
+  border: 1px solid red;
   overflow: hidden;
   overflow-y: auto;
 
@@ -14,9 +17,12 @@ export const SubMain = styled.div`
 
 export const Status = styled.div`
   background-color: #8e8;
-  padding: 0.5em;
+  padding: 0.3em;
   text-align: center;
+  border-radius: 5px;
+  margin: 0 1em;
   width: 70px;
+  height: max-content;
 `;
 
 export const Tab = styled.button`
@@ -28,17 +34,20 @@ export const Tab = styled.button`
 export const Taskbox = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  align-items: center;
   background-color: #ddd;
-  width: 70%;
-  margin: 0 auto 0.3em;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  height: 50px;
+  margin: 0 auto 1em;
   cursor: pointer;
 `;
 
 export const Forms = styled.form`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   margin: 1em auto;
 `;
 

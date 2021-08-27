@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept} from './requests';
+import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, parseTime} from './requests';
 import { Taskbox, Status } from './Styled';
 
 const customStyles = {
@@ -54,24 +54,12 @@ const Task = ({tasks, who, refresh}) => {
                     <li>tip - {selection.tip}</li>
                 </ul>
                 {process === 'open' ? <button onClick={closeModal}>close</button> : null}
-                {/*
-                if client,
-                    if status = open, needs cancel button (optional edit)
-                    else have a telephone icon/button
-                */}
                 {who === 'client' ? <button onClick={() => {
                     cancelRequest(selection.id);
                     // console.log(refresh);
                     refresh('mark', tasks[1]);
                     closeModal();
                     }}>Cancel request</button> : null}
-                {/*if server:
-                    if viewing completed requests: simply a close button
-                    open requests 3 stages
-                    confirm (triggers accepted) & cancel buttons
-                    confirm button becomes start button (started), cancel button removed
-                    start button becomes completed button (completed)
-                */}
                 {who === 'server' && process === 'open' ? <button onClick={() => {
                     acceptRequest('lemon', selection.id);
                     setProcess('accepted');
@@ -96,15 +84,20 @@ const Task = ({tasks, who, refresh}) => {
                     closeModal();
                 }}>Complete</button> : null}
              </Modal>
+
             {tasks[0].map((task, index) => {
                 let time = Number(task.schedule);
                 time = new Date(time);
                 time = time.toString();
-                time = time.split(' ').slice(0,5).join(' ');
+                // time = time.split(' ').slice(0,5).join(' ');
+                let split = time.split(' ');
+                let hours = split[4];
+                let date = `${split[1]} ${split[2]}`;
+                time = parseTime(hours) + ' - ' + date;
                 return <Taskbox key={index} onClick={() => {
                     setSelection(task);
                     openModal();
-                }}>{time}<Status>{task.status}</Status></Taskbox>;
+                }}><span style={{margin:'0 1em'}}>{time}</span><Status>{task.status}</Status></Taskbox>;
             })}
         </div>
     );

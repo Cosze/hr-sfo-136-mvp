@@ -82,3 +82,24 @@ export const cancelAccept = (request_id) => {
     axios.put(`/app/servers/123/cancel?request_id=${request_id}`)
     .catch(e => alert('Error cancelling requests for server', e));
 };
+
+/*=========================
+      HELPER FUNCTIONS
+==========================*/
+
+// convert military time into local time AM/PM
+export const parseTime = (string) => {
+    let times = string.split(':');
+    let pm = false;
+    let hour = times[0];
+    if (hour === '00') {
+        hour = 12
+    } else if (hour === '12') {
+        pm = true;
+    } else if (hour > 12) {
+        hour -= 12;
+        pm = true;
+    }
+    return `${hour}:${times[1]} ${pm ? 'PM' : 'AM'}`;
+
+};
