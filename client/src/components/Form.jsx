@@ -65,23 +65,23 @@ const Form = () => {
             <h2>Schedule room cleaning</h2>
 
             <label>Name: <br/>
-              <Input type='text' name='client_name' required></Input>
+              <Input placeholder='Name' type='text' name='client_name' required></Input>
             </label>
 
             <label>Room number:<br/>
-              <Input type='number' name='room' required></Input>
+              <Input placeholder='Room #' type='number' name='room' required></Input>
             </label>
 
             <label>Scheduled time:<br/>
-              <Input type='datetime-local' name='schedule' required></Input>
+              <Input placeholder='name' type='datetime-local' name='schedule' required></Input>
             </label>
 
             <label>Additional details:<br/>
-              <textarea name='preferences' rows='4' cols='35'></textarea>
+              <textarea placeholder='Enter text here...' name='preferences' rows='4' cols='35'></textarea>
             </label>
 
             <label>Optional tip:<br/>
-              <Input type='number' name='tip'></Input>
+              <Input placeholder='0' type='number' name='tip' min='0'></Input>
             </label>
 
             <Status as='button' style={{cursor:'pointer'}}>Submit</Status>
