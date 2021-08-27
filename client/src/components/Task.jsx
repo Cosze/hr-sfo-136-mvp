@@ -41,7 +41,7 @@ const Task = ({tasks, who, refresh}) => {
                 style={customStyles}
                 contentLabel="Example Modal">
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
-                <div>status - {selection.status}</div>
+                <Taskbox><span style={{margin:'0 1em'}}>{selection.schedule ? convertTime(selection.schedule) : null}</span><Status>{selection.status}</Status></Taskbox>
                 <ul>
                     <li>id - {selection.id}</li>
                     <li>client_name - {selection.client_name}</li>
