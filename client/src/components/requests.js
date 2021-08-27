@@ -88,7 +88,7 @@ export const cancelAccept = (request_id) => {
 ==========================*/
 
 // convert military time into local time AM/PM
-export const parseTime = (string) => {
+const parseTime = (string) => {
     let times = string.split(':');
     let pm = false;
     let hour = times[0];
@@ -102,4 +102,15 @@ export const parseTime = (string) => {
     }
     return `${hour}:${times[1]} ${pm ? 'PM' : 'AM'}`;
 
+};
+
+export const convertTime = (string) => {
+    string = Number(string);
+    string = new Date(string);
+    string = string.toString();
+    let split = string.split(' ');
+    let hours = split[4];
+    let date = `${split[1]} ${split[2]}`;
+    string = parseTime(hours) + ' - ' + date;
+    return string;
 };

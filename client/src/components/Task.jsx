@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, parseTime} from './requests';
+import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
 import { Taskbox, Status } from './Styled';
 
 const customStyles = {
@@ -86,14 +86,7 @@ const Task = ({tasks, who, refresh}) => {
              </Modal>
 
             {tasks[0].map((task, index) => {
-                let time = Number(task.schedule);
-                time = new Date(time);
-                time = time.toString();
-                // time = time.split(' ').slice(0,5).join(' ');
-                let split = time.split(' ');
-                let hours = split[4];
-                let date = `${split[1]} ${split[2]}`;
-                time = parseTime(hours) + ' - ' + date;
+                let time = convertTime(task.schedule);
                 return <Taskbox key={index} onClick={() => {
                     setSelection(task);
                     openModal();
