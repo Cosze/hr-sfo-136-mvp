@@ -8,8 +8,13 @@ const Client = () => {
     const [request, setRequest] = useState(false);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        getRequest('mark', setTasks);
-    }, []);
+        let timeoutID = setTimeout(() => {
+           getRequest('mark', setTasks);
+        }, 300);
+        return () => {
+            clearTimeout(timeoutID);
+        };
+    });
     return (
         <>
         <div>Client</div>
@@ -20,7 +25,6 @@ const Client = () => {
         <div style={{display: 'flex', width: '70%', justifyContent: 'space-evenly', position: 'absolute', bottom: '5%', right:'15%'}}>
             <Tab onClick={() => {
                 setRequest(false);
-                getRequest('mark', setTasks);
                 }} disabled={!request}>Tasks</Tab>
             <Tab onClick={() => setRequest(true)} disabled={request}>Request</Tab>
         </div>

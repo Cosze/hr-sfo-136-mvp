@@ -7,9 +7,13 @@ const Server = () => {
     const [completed, setCompleted] = useState(false);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        // server get open requests
-        getOpenRequests(setTasks);
-    }, []);
+        let timeoutID = setTimeout(() => {
+           getOpenRequests(setTasks);
+        }, 300);
+        return () => {
+            clearTimeout(timeoutID);
+        };
+    });
     const [finished, setFinished] = useState([]);
     useEffect(() => {
         // server get completed requests

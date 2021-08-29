@@ -8,6 +8,7 @@ import axios from 'axios';
 export const getRequest = (client_name, callback) => {
     axios.get(`/app/clients/123?client_name=${client_name}`)
     .then(data => {
+        console.log('iteration');
         callback(data.data);
     })
     .catch(e => alert('Error getting requests', e));

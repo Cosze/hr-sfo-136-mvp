@@ -73,7 +73,7 @@ const Form = () => {
             </label>
 
             <label>Scheduled time:<br/>
-              <Input placeholder='name' type='datetime-local' name='schedule' required></Input>
+              <Input type='datetime-local' name='schedule' required></Input>
             </label>
 
             <label>Additional details:<br/>
