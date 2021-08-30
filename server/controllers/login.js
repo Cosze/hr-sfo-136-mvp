@@ -4,7 +4,7 @@ module.exports = {
     check: async (req, res) => {
         try {
             const data = await models.login.check(req.query);
-            res.status(200).send(data.rows);
+            res.status(200).send(data.rows.length > 0 ? false : true);
         }
         catch(e) {
             res.status(500).send('error checking username', e);
@@ -25,6 +25,7 @@ module.exports = {
             res.status(201).send(true);
         }
         catch(e) {
+            console.log(e);
             res.status(500).send(false);
         }
     },

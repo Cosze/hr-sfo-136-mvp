@@ -118,7 +118,7 @@ export const convertTime = (string) => {
 export const check = (username, callback) => {
     axios.get(`/app/check?username=${username}`)
     .then(data => {
-        callback(data);
+        callback(data.data);
     })
     .catch(e => alert('Error checking username', e));
 };
@@ -126,14 +126,13 @@ export const check = (username, callback) => {
 export const signIn = (login, callback) => {
     axios.post(`/app/login`, login)
     .then(data => {
-        console.log('data@@@', data.data[0].role);
         callback(data.data[0].role);
     })
     .catch(e => alert('Error signing in', e));
 };
 
-export const createAccount = (name, username, password, role, callback) => {
-    axios.post( `/app/create`, {name, username, password, role})
+export const createAccount = (accInfo, callback) => {
+    axios.post( `/app/create`, accInfo)
     .then(data => {
         callback(data.data);
     })

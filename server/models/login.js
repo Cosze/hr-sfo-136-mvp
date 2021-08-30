@@ -12,6 +12,7 @@ module.exports = {
     create: ({name, username, password, role}) => {
         const values = `'${name}', '${username}', '${password}', '${role}'`;
         const query = `INSERT INTO users(name, username, password, role) VALUES(${values})`;
+        console.log(values);
         return db.query(query);
     },
 };
