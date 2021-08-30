@@ -23,6 +23,10 @@ export const Status = styled.div`
   margin: 0 1em;
   width: 70px;
   height: max-content;
+
+  ${props => props.isButton ? `&:hover {
+    background-color: #7d7;
+  }` : null}
 `;
 
 export const Tab = styled.button`

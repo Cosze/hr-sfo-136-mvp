@@ -4,14 +4,25 @@ import { postRequest } from './requests';
 import { Forms, Status, Input } from './Styled';
 
 const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
+  content: {
+    top: '45%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '235px',
+    height: '150px',
+  },
+  overlay: {
+    left: '50%',
+    right: 'auto',
+    top: '50.8%',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '277px',
+    height: '592.8px',
+  }
   };
 
 const Form = () => {
@@ -69,22 +80,22 @@ const Form = () => {
             </label>
 
             <label>Room number:<br/>
-              <Input placeholder='Room #' type='number' name='room' required></Input>
+              <Input placeholder='Room #' type='number' name='room' min='1' required></Input>
             </label>
 
             <label>Scheduled time:<br/>
               <Input type='datetime-local' name='schedule' required></Input>
             </label>
 
-            <label>Additional details:<br/>
-              <textarea placeholder='Enter text here...' name='preferences' rows='4' cols='35'></textarea>
+            <label>Special requests:<br/>
+              <textarea placeholder='Enter text here...' name='preferences' rows='4' cols='31'></textarea>
             </label>
 
             <label>Optional tip:<br/>
               <Input placeholder='0' type='number' name='tip' min='0'></Input>
             </label>
 
-            <Status as='button' style={{cursor:'pointer'}}>Submit</Status>
+            <Status as='button' isButton style={{cursor:'pointer', alignSelf: 'center', border: 'none'}}>Submit</Status>
         </Forms>
         </>
     );

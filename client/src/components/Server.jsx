@@ -29,7 +29,7 @@ const Server = () => {
             <Tab onClick={() => {
                 getOpenRequests(setTasks);
                 setCompleted(false);
-                }} disabled={!completed}>open</Tab>
+                }} disabled={!completed}>Open</Tab>
             <Splitter />
             <Tab onClick={() => {
                 getCompleteRequests('lemon', setFinished);
