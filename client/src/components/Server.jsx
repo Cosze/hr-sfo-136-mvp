@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Task from './Task.jsx';
 import { getOpenRequests, getCompleteRequests } from './requests';
-import { SubMain, Status, Tab, Taskbox} from './Styled';
+import { SubMain, Status, Tab, Taskbox, ButtonContainer, Splitter} from './Styled';
 
 const Server = () => {
     const [completed, setCompleted] = useState(false);
@@ -9,7 +9,7 @@ const Server = () => {
     useEffect(() => {
         let timeoutID = setTimeout(() => {
            getOpenRequests(setTasks);
-        }, 300);
+        }, 100);
         return () => {
             clearTimeout(timeoutID);
         };
@@ -25,16 +25,17 @@ const Server = () => {
         <SubMain>
         {completed ? <Task tasks={[finished, setFinished]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}}/> : <Task tasks={[tasks, setTasks]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}} />}
         </SubMain>
-        <div style={{display: 'flex', width: '70%', justifyContent: 'space-evenly', position: 'absolute', bottom: '5%', right:'15%'}}>
+        <ButtonContainer>
             <Tab onClick={() => {
                 getOpenRequests(setTasks);
                 setCompleted(false);
                 }} disabled={!completed}>open</Tab>
+            <Splitter />
             <Tab onClick={() => {
                 getCompleteRequests('lemon', setFinished);
                 setCompleted(true);
             }} disabled={completed}>Completed</Tab>
-        </div>
+        </ButtonContainer>
         </>
     );
 };
