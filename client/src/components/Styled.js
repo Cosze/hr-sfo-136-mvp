@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+
+`;
+
 export const SubMain = styled.div`
   position: relative;
-  height: 475px;
+  height: 80%;
   max-width: 277px;
   margin: 1em 0 0;
   padding: 1em;
@@ -36,6 +40,7 @@ export const Tab = styled.button`
   border: none;
   background-color: #fff;
   cursor: pointer;
+  ${props => props.disabled ? 'box-shadow: inset 0 0 3px rgba(100,100,100,0.1);' : null}
 
   &:hover {
     background-color: ${props => props.disabled ? 'transparent': '#ddd'};
@@ -59,7 +64,6 @@ export const Forms = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 1em auto;
 `;
 
 export const Input = styled.input`
@@ -72,6 +76,8 @@ export const ButtonContainer = styled.div`
   width: 100%;
   justify-content: space-evenly;
   height: 50px;
+  position: absolute;
+  bottom: 0;
 `;
 
 export const Splitter = styled.div`

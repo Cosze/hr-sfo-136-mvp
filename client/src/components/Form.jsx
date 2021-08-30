@@ -73,8 +73,6 @@ const Form = () => {
                 ev.preventDefault();
                 openModal();
         }}>
-            <h2>Schedule room cleaning</h2>
-
             <label>Name: <br/>
               <Input placeholder='Name' type='text' name='client_name' required></Input>
             </label>
@@ -88,7 +86,7 @@ const Form = () => {
             </label>
 
             <label>Special requests:<br/>
-              <textarea placeholder='Enter text here...' name='preferences' rows='4' cols='31'></textarea>
+              <textarea placeholder='Enter text here...' name='preferences' rows='8' cols='31'></textarea>
             </label>
 
             <label>Optional tip:<br/>
