@@ -48,9 +48,6 @@ const Login = ({setUser}) => {
                 }
             }}>CREATE ACCOUNT</SignInButton>
             {newAcc ? <SignInButton onClick={ev => setNewAcc(false)}>CANCEL</SignInButton> : null}
-            <div style={{height:'10px', width:'10px', backgroundColor: 'red'}} onClick={ev => {
-                console.log(valid);
-            }}></div>
         </Forms>
     );
 };
