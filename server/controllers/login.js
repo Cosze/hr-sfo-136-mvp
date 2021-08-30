@@ -10,10 +10,10 @@ module.exports = {
             res.status(500).send('error checking username', e);
         }
     },
-    login: (req, res) => {
+    login: async (req, res) => {
         try {
-            const data = models.login.login(req.body);
-            res.status(201).send('success');
+            const data = await models.login.login(req.body);
+            res.status(201).send(data.rows.length > 0 ? true : false);
         }
         catch(e) {
             res.status(500).send('error logging in', e);
