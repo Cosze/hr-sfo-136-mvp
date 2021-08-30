@@ -102,7 +102,6 @@ const parseTime = (string) => {
         pm = true;
     }
     return `${hour}:${times[1]} ${pm ? 'PM' : 'AM'}`;
-
 };
 
 export const convertTime = (string) => {
@@ -115,3 +114,7 @@ export const convertTime = (string) => {
     string = parseTime(hours) + ' - ' + date;
     return string;
 };
+
+export const signIn = () => {};
+
+export const createAccount = () => {};

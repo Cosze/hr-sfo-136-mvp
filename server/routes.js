@@ -7,6 +7,10 @@ router.route('/')
     res.status(200).send();
   });
 
+router.get('/check', controller.login.check);
+router.post('/login', controller.login.login);
+router.post('/create', controller.login.create);
+
 router.route('/clients/:id') // login currently omitted
   .get(controller.clients.getRequests) // gets requests made by client at :id
   .post(controller.clients.postRequest) // posts a new request to database

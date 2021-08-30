@@ -6,8 +6,14 @@ const Login = (props) => {
         <Forms login>
             <Input type='text' name='username' placeholder='Username' login></Input>
             <Input type='password' name='password' placeholder='Password' login></Input>
-            <SignInButton>SIGN IN</SignInButton>
-            <SignInButton>CREATE ACCOUNT</SignInButton>
+            <SignInButton onClick={ev => {
+                ev.preventDefault();
+                console.log('clicked!');
+            }}>SIGN IN</SignInButton>
+            <SignInButton onClick={ev => {
+                ev.preventDefault();
+                console.log('clicked!');
+            }}>CREATE ACCOUNT</SignInButton>
         </Forms>
     );
 };
