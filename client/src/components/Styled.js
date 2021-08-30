@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
+export const MainHeader = styled.header`
+  box-sizing: border-box;
+  width: 70%;
+  padding-top: 0.5em;
+`;
 
+export const Header = styled.div`
+  border: 1px solid black;
 `;
 
 export const SubMain = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 80%;
   max-width: 277px;
   margin: 1em 0 0;
@@ -68,6 +76,23 @@ export const Forms = styled.form`
 
 export const Input = styled.input`
   margin-bottom: 1em;
+  border: ${props => props.login ? '1px solid black' : 'none'};
+
+  ${props => props.login ? `height: 30px;
+  display: block;
+  align-self: center;
+  width: 80%;
+  margin: 0 auto 1.5em;
+  ` : null}
+
+  ${props => props.login ? `&:first-child {
+    margin-top: 1em;
+  }` : null }
+`;
+
+export const SignInButton = styled.button`
+  width: 80%;
+  margin: 0 auto 1.5em;
 `;
 
 export const ButtonContainer = styled.div`
@@ -85,4 +110,10 @@ export const Splitter = styled.div`
   background-color: #888;
   height: 50%;
   align-self: center;
+`;
+
+export const Filler = styled.div`
+  width: max-content;
+  height: max-content;
+  margin: 10em auto;
 `;

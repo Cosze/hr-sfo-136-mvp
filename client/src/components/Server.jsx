@@ -21,7 +21,6 @@ const Server = () => {
     }, []);
     return (
         <>
-        <div>Server Name --- STATUS</div>
         <SubMain>
         {completed ? <Task tasks={[finished, setFinished]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}}/> : <Task tasks={[tasks, setTasks]} who='server' refresh={{open: getOpenRequests, complete: getCompleteRequests}} />}
         </SubMain>

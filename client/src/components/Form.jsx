@@ -86,7 +86,7 @@ const Form = () => {
             </label>
 
             <label>Special requests:<br/>
-              <textarea placeholder='Enter text here...' name='preferences' rows='8' cols='31'></textarea>
+              <textarea placeholder='Enter text here...' name='preferences' rows='8' cols='31' style={{border: 'none'}}></textarea>
             </label>
 
             <label>Optional tip:<br/>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
-import { Taskbox, Status } from './Styled';
+import { Taskbox, Status, Filler } from './Styled';
 
 const customStyles = {
     content: {
@@ -71,15 +71,17 @@ const Task = ({tasks, who, refresh}) => {
                     refresh('mark', tasks[1]);
                     closeModal();
                     }}>Cancel request</button> : null}
-                {who === 'server' && process === 'open' ? <button onClick={() => {
+                {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
                     acceptRequest('lemon', selection.id);
                     setProcess('accepted');
+                    selection.status = 'accepted';
                     refresh.open(tasks[1]);
                 }}>Accept</button> : null}
                 {process === 'accepted' ? <>
                 <button onClick={() => {
                     startRequest(selection.id);
                     setProcess('started');
+                    selection.status = 'started';
                 }}>Start</button>
                 <button onClick={() => {
                     cancelAccept(selection.id);
@@ -95,8 +97,8 @@ const Task = ({tasks, who, refresh}) => {
                     closeModal();
                 }}>Complete</button> : null}
              </Modal>
-
-            {tasks[0].map((task, index) => {
+             {tasks[0].length === 0 ? <Filler>Nothing available</Filler> :
+              tasks[0].map((task, index) => {
                 let time = convertTime(task.schedule);
                 return <Taskbox key={index} onClick={() => {
                     setSelection(task);
