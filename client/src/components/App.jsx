@@ -11,8 +11,16 @@ const App = () => {
     <main style={{width: '277px', height: '580px', backgroundColor:'#fff', margin: '100px auto', position: 'relative', display: 'flex', flexDirection: 'column'}}>
       <MainHeader><img src='https://i.imgur.com/KH6GDoR.png' alt='main logo' style={{width: '100%'}}/></MainHeader>
       {/* Determine if client or server */}
-      {user ? user === 'guest' ? <Client /> : <Server /> : <Login setUser={setUser} />}
-      {user ? <button style={{position: 'absolute', top: '1%', right:'2%', cursor:'pointer'}}
+      {(user => {
+        if (user === 'client') {
+          return <Client />
+        } else if (user === 'server') {
+          return <Server />
+        } else {
+          return <Login setUser={setUser} />
+        }
+      })(user)}
+      {user === 'client' || user === 'server' ? <button style={{position: 'absolute', top: '1%', right:'2%', cursor:'pointer'}}
       onClick={() => setUser(null)}>Logout</button> : null}
     </main>
   );

@@ -123,10 +123,11 @@ export const check = (username, callback) => {
     .catch(e => alert('Error checking username', e));
 };
 
-export const signIn = (username, password, callback) => {
-    axios.post(`/app/login`, {username, password})
+export const signIn = (login, callback) => {
+    axios.post(`/app/login`, login)
     .then(data => {
-        callback(data);
+        console.log('data@@@', data.data[0].role);
+        callback(data.data[0].role);
     })
     .catch(e => alert('Error signing in', e));
 };
@@ -134,7 +135,7 @@ export const signIn = (username, password, callback) => {
 export const createAccount = (name, username, password, role, callback) => {
     axios.post( `/app/create`, {name, username, password, role})
     .then(data => {
-        callback(data);
+        callback(data.data);
     })
     .catch(e => alert('Error creating account'));
 };

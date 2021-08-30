@@ -74,6 +74,19 @@ export const Forms = styled.form`
   width: 100%;
 `;
 
+export const Select = styled.select`
+  margin-bottom: 1em;
+  height: 34px;
+  border: 1px solid black;
+  display: block;
+  align-self: center;
+  width: 227.59px;
+  margin: 0 auto 1.5em;
+  ${props => props.login ? `&:first-child {
+    margin-top: 1em;
+  }` : null }
+`;
+
 export const Input = styled.input`
   margin-bottom: 1em;
   border: ${props => props.login ? '1px solid black' : 'none'};
