@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { postRequest } from './requests';
 import { Forms, Status, Input } from './Styled';
@@ -26,6 +27,7 @@ const customStyles = {
   };
 
 const Form = () => {
+    const { userContext } = useContext(UserContext);
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -74,7 +76,7 @@ const Form = () => {
                 openModal();
         }}>
             <label>Name: <br/>
-              <Input placeholder='Name' type='text' name='client_name' required></Input>
+              <Input placeholder='Name' type='text' name='client_name' value={`${userContext}`} readOnly></Input>
             </label>
 
             <label>Room number:<br/>

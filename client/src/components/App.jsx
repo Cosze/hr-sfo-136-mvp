@@ -24,7 +24,7 @@ const App = () => {
         }
       })(user)}
       {user === 'client' || user === 'server' ? <button style={{position: 'absolute', top: '1%', right:'2%', cursor:'pointer'}}
-      onClick={() => setUser(null)}>Logout</button> : null}
+      onClick={() => {setUserContext(null); setUser(null);}}>Logout</button> : null}
     </UserContext.Provider>
     </main>
   );

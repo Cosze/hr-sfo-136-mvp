@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from './UserContext.jsx';
 import Form from './Form.jsx';
 import Task from './Task.jsx';
 import { getRequest } from './requests';
 import { SubMain, Status, Tab, Taskbox, ButtonContainer, Splitter, Header} from './Styled';
 
+
 const Client = () => {
+    const { userContext } = useContext(UserContext);
     const [request, setRequest] = useState(false);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
         let timeoutID = setTimeout(() => {
-           getRequest('mark', setTasks);
+           getRequest(userContext, setTasks);
         }, 100);
         return () => {
             clearTimeout(timeoutID);

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { check, signIn, createAccount } from './requests';
 import { Forms, Input, SignInButton, Select } from './Styled';
+import UserContext from './UserContext.jsx';
 
 const Login = ({setUser}) => {
+    const { setUserContext } = useContext(UserContext);
     const [newAcc, setNewAcc] = useState(false);
     const [valid, setValid] = useState(false);
     return (
@@ -26,8 +28,8 @@ const Login = ({setUser}) => {
                 ev.preventDefault();
                 let form = new FormData(document.getElementById('login'));
                 let formData = Object.fromEntries(form);
+                signIn(formData, setUserContext, setUser);
                 document.getElementById('login').reset();
-                signIn(formData, setUser);
             }}>SIGN IN</SignInButton>}
             <SignInButton onClick={ev => {
                 // ev.preventDefault();

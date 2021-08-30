@@ -123,12 +123,16 @@ export const check = (username, callback) => {
     .catch(e => alert('Error checking username', e));
 };
 
-export const signIn = (login, callback) => {
+export const signIn = (login, setName, setRole) => {
     axios.post(`/app/login`, login)
     .then(data => {
-        callback(data.data[0].role);
+        setName(data.data[0].name);
+        return data;
     })
-    .catch(e => alert('Error signing in', e));
+    .then(data => {
+        setRole(data.data[0].role);
+    })
+    .catch(e => alert('Incorrect login information', e));
 };
 
 export const createAccount = (accInfo, callback) => {
