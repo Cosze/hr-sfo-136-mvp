@@ -5,14 +5,24 @@ import { Taskbox, Status } from './Styled';
 
 const customStyles = {
     content: {
-      top: '35%',
+      top: '45%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '280px',
+      width: '235px',
+      height: '400px',
     },
+    overlay: {
+      left: '50%',
+      right: 'auto',
+      top: '50.8%',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '277px',
+      height: '592.8px',
+    }
   };
 
 const Task = ({tasks, who, refresh}) => {
