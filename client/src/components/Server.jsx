@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from './UserContext.jsx';
 import Task from './Task.jsx';
 import { getOpenRequests, getCompleteRequests } from './requests';
 import { SubMain, Status, Tab, Taskbox, ButtonContainer, Splitter} from './Styled';
 
 const Server = () => {
+    const { userContext } = useContext(UserContext);
     const [completed, setCompleted] = useState(false);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
@@ -17,7 +19,7 @@ const Server = () => {
     const [finished, setFinished] = useState([]);
     useEffect(() => {
         // server get completed requests
-        getCompleteRequests('lemon', setFinished);
+        getCompleteRequests(`${userContext}`, setFinished);
     }, []);
     return (
         <>
@@ -31,7 +33,7 @@ const Server = () => {
                 }} disabled={!completed}>Open</Tab>
             <Splitter />
             <Tab onClick={() => {
-                getCompleteRequests('lemon', setFinished);
+                getCompleteRequests(`${userContext}`, setFinished);
                 setCompleted(true);
             }} disabled={completed}>Completed</Tab>
         </ButtonContainer>

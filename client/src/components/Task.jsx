@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
 import { Taskbox, Status, Filler } from './Styled';
@@ -26,6 +27,7 @@ const customStyles = {
   };
 
 const Task = ({tasks, who, refresh}) => {
+    const { userContext } = useContext(UserContext);
     const [process, setProcess] = useState('open');
     const [selection, setSelection] = useState({});
     let subtitle;
@@ -68,11 +70,11 @@ const Task = ({tasks, who, refresh}) => {
                 {who === 'client' ? <button onClick={() => {
                     cancelRequest(selection.id);
                     // console.log(refresh);
-                    refresh('mark', tasks[1]);
+                    refresh(`${userContext}`, tasks[1]);
                     closeModal();
                     }}>Cancel request</button> : null}
                 {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
-                    acceptRequest('lemon', selection.id);
+                    acceptRequest(`${userContext}`, selection.id);
                     setProcess('accepted');
                     selection.status = 'accepted';
                     refresh.open(tasks[1]);
