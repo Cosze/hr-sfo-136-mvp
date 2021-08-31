@@ -178,6 +178,9 @@ export const ButtonHolder = styled.div`
 `;
 
 export const Close = styled.div`
+  position: absolute;
+  top: 2%;
+  right: 5%;
   width: 15px;
   cursor: pointer;
   transition: transform 0.2s;

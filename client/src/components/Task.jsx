@@ -81,8 +81,8 @@ const Task = ({tasks, who, refresh}) => {
                     <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
                 </ul> */}
-                <Close onClick={closeModal}><CloseImage src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' alt='close button' /></Close>
-                {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
+
+                {process === 'open' ? <Close onClick={closeModal}><CloseImage src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' alt='close button' /></Close> : null}
                 <ButtonHolder>
                   {who === 'client' ? <button onClick={() => {
                       cancelRequest(selection.id);
