@@ -47,7 +47,17 @@ const Task = ({tasks, who, refresh}) => {
                 style={customStyles}
                 contentLabel="Example Modal">
                   <Status modal>{selection.status}</Status>
-                  {who === 'server' ? null : (
+                  {who === 'server' ? selection.status !== 'completed' ? (
+                    <ModalView>
+                    <button type='button' onClick={ev => console.log(process, selection.status)}>test</button>
+                    <InfoText style={{fontSize: '1rem'}}>{selection.client_name}</InfoText>
+                    <InfoText style={{fontSize: '0.8rem'}}>Room: ${selection.room}</InfoText>
+                    <InfoTitle>Preferences: </InfoTitle>
+                    {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
+                    <InfoText>N/A</InfoText>
+                    }
+                  </ModalView>
+                  ) : null : (
                   <ModalView>
                     {selection.server_name ? (
                     <div style={{width: '30%',}}>
@@ -60,7 +70,6 @@ const Task = ({tasks, who, refresh}) => {
                     {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
                     <InfoText>N/A</InfoText>
                     }
-
                   </ModalView>
                   )}
                 {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
@@ -98,16 +107,16 @@ const Task = ({tasks, who, refresh}) => {
                   }}>Accept</button> : null}
                   {process === 'accepted' ? <>
                   <button onClick={() => {
+                    cancelAccept(selection.id);
+                    setProcess('open');
+                    refresh.open(tasks[1]);
+                    closeModal();
+                  }}>Cancel</button>
+                  <button onClick={() => {
                       startRequest(selection.id);
                       setProcess('started');
                       selection.status = 'started';
                   }}>Start</button>
-                  <button onClick={() => {
-                      cancelAccept(selection.id);
-                      setProcess('open');
-                      refresh.open(tasks[1]);
-                      closeModal();
-                  }}>Cancel</button>
                   </> : null}
                   {process === 'started' ? <button onClick={() => {
                       completeRequest(selection.id);
