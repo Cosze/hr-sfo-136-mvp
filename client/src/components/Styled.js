@@ -29,6 +29,10 @@ export const SubMain = styled.div`
 
 export const Status = styled.div`
   background-color: #8e8;
+  ${props => props.status === 'open' ? `background-color: #8ee;` : null}
+  ${props => props.status === 'accepted' ? `background-color: #ee8;` : null}
+  ${props => props.status === 'started' ? `background-color: #88e;` : null}
+  ${props => props.status === 'completed' ? `background-color: #8e8;` : null}
   padding: 0.3em;
   text-align: center;
   border-radius: 5px;
@@ -149,16 +153,22 @@ export const InfoTitle = styled.div`
   text-align: center;
   font-size: 0.8rem;
   margin-bottom: 0.3em;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  width: 80%;
+  height: 50px;
 `;
 
 export const InfoText = styled.div`
   font-size: 0.8rem;
   text-align: center;
-  width: 100%;
+  width: 80%;
+  height: 50px;
   max-height: 140px;
   overflow-y: auto;
   overflow-wrap: break-word;
-  // border: 1px solid red;
+  border-radius: 5px;
+  border: 1px solid #eee;
   margin-bottom: 0.7em;
 
   &::-webkit-scrollbar {

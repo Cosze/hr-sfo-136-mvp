@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
-import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
+import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime, onlyConvertTime} from './requests';
 import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder, Close, CloseImage } from './Styled';
 
 const customStyles = {
@@ -46,10 +46,9 @@ const Task = ({tasks, who, refresh}) => {
                 isOpen={modalIsOpen}
                 style={customStyles}
                 contentLabel="Example Modal">
-                  <Status modal>{selection.status}</Status>
+                  <Status modal status={selection.status}>{selection.status}</Status>
                   {who === 'server' ? selection.status !== 'completed' ? (
                     <ModalView>
-                    <button type='button' onClick={ev => console.log(process, selection.status)}>test</button>
                     <InfoText style={{fontSize: '1rem'}}>{selection.client_name}</InfoText>
                     <InfoText style={{fontSize: '0.8rem'}}>Room: ${selection.room}</InfoText>
                     <InfoTitle>Preferences: </InfoTitle>
@@ -57,7 +56,22 @@ const Task = ({tasks, who, refresh}) => {
                     <InfoText>N/A</InfoText>
                     }
                   </ModalView>
-                  ) : null : (
+                  ) : (
+                    <ModalView>
+                    <InfoText style={{fontSize: '1rem'}}>{selection.client_name}</InfoText>
+                    <InfoText style={{fontSize: '0.8rem'}}>Tip: ${selection.tip}</InfoText>
+                    <InfoTitle>Preferences: </InfoTitle>
+                    {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
+                    <InfoText>N/A</InfoText>
+                    }
+                    <InfoTitle>Accepted: </InfoTitle>
+                    <InfoText>{onlyConvertTime(selection.time_accepted)}</InfoText>
+                    <InfoTitle>Started: </InfoTitle>
+                    <InfoText>{onlyConvertTime(selection.time_started)}</InfoText>
+                    <InfoTitle>Completed: </InfoTitle>
+                    <InfoText>{onlyConvertTime(selection.time_completed)}</InfoText>
+                  </ModalView>
+                  ) : (
                   <ModalView>
                     {selection.server_name ? (
                     <div style={{width: '30%',}}>
@@ -133,7 +147,7 @@ const Task = ({tasks, who, refresh}) => {
                     setSelection(task);
                     openModal();
                 }}><div style={{margin:'0 1em', display: 'flex', flexDirection: 'column',}}><span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.85rem'}}>{time[0]}</span><span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.8rem'}}>{time[1]}</span>
-                  </div><Status>{task.status}</Status></Taskbox>;
+                  </div><Status status={task.status}>{task.status}</Status></Taskbox>;
             })}
         </div>
     );

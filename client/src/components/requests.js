@@ -104,6 +104,17 @@ const parseTime = (string) => {
     return `${hour}:${times[1]} ${pm ? 'PM' : 'AM'}`;
 };
 
+export const onlyConvertTime = (string) => {
+    string = Number(string);
+    string = new Date(string);
+    string = string.toString();
+    let split = string.split(' ');
+    let hours = split[4];
+    let date = `${split[1]} ${split[2]}`;
+    let parsedHour = parseTime(hours);
+    string = parsedHour + ' - ' + date;
+}
+
 export const convertTime = (string) => {
     string = Number(string);
     let string2 = string + 3600000;
