@@ -81,8 +81,8 @@ const Task = ({tasks, who, refresh}) => {
                     <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
                 </ul> */}
+                {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
                 <ButtonHolder>
-                  {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
                   {who === 'client' ? <button onClick={() => {
                       cancelRequest(selection.id);
                       // console.log(refresh);
