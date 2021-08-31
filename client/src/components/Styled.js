@@ -165,16 +165,16 @@ export const InfoText = styled.div`
     display: none;
   }
 
-  ${props => props.preferences ? `border: 1px solid #eee;
-  padding: 0.5em;
-  ` : null}
+  // ${props => props.preferences ? `border: 1px solid #eee;
+  // padding: 0.5em;
+  // ` : null}
   `;
 
 export const ButtonHolder = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
 
 export const Close = styled.div`

@@ -54,7 +54,7 @@ const Task = ({tasks, who, refresh}) => {
                       <img src='https://static.thenounproject.com/png/2366460-200.png' alt='server image' style={{width: '100%'}}></img>
                     </div>
                     ) : null}
-                    <InfoText>{selection.server_name}</InfoText>
+                    <InfoText style={{fontSize: '1rem'}}>{selection.server_name}</InfoText>
                     <InfoText style={{fontSize: '0.8rem'}}>Tip: ${selection.tip}</InfoText>
                     <InfoTitle>Preferences: </InfoTitle>
                     {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
