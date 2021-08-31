@@ -112,7 +112,7 @@ const Task = ({tasks, who, refresh}) => {
                       // console.log(refresh);
                       refresh(`${userContext}`, tasks[1]);
                       closeModal();
-                      }}>Cancel request</button> : null}
+                      }}>{selection.status !== 'completed' ? 'Cancel request' : 'Remove'}</button> : null}
                   {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
                       acceptRequest(`${userContext}`, selection.id);
                       setProcess('accepted');

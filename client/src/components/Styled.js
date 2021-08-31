@@ -153,22 +153,16 @@ export const InfoTitle = styled.div`
   text-align: center;
   font-size: 0.8rem;
   margin-bottom: 0.3em;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  width: 80%;
-  height: 50px;
+  width: 100%;
 `;
 
 export const InfoText = styled.div`
   font-size: 0.8rem;
   text-align: center;
-  width: 80%;
-  height: 50px;
+  width: 100%;
   max-height: 140px;
   overflow-y: auto;
   overflow-wrap: break-word;
-  border-radius: 5px;
-  border: 1px solid #eee;
   margin-bottom: 0.7em;
 
   &::-webkit-scrollbar {

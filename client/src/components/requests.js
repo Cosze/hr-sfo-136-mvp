@@ -113,6 +113,7 @@ export const onlyConvertTime = (string) => {
     let date = `${split[1]} ${split[2]}`;
     let parsedHour = parseTime(hours);
     string = parsedHour + ' - ' + date;
+    return string;
 }
 
 export const convertTime = (string) => {
