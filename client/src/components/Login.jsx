@@ -29,7 +29,7 @@ const Login = ({setUser}) => {
                 let form = new FormData(document.getElementById('login'));
                 let formData = Object.fromEntries(form);
                 signIn(formData, setUserContext, setUser);
-                document.getElementById('login').reset();
+                //document.getElementById('login').reset();
             }}>SIGN IN</SignInButton>}
             <SignInButton onClick={ev => {
                 // ev.preventDefault();
