@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
-import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder } from './Styled';
+import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder, Close, CloseImage } from './Styled';
 
 const customStyles = {
     content: {
@@ -81,6 +81,7 @@ const Task = ({tasks, who, refresh}) => {
                     <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
                 </ul> */}
+                <Close onClick={closeModal}><CloseImage src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' alt='close button' /></Close>
                 {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
                 <ButtonHolder>
                   {who === 'client' ? <button onClick={() => {

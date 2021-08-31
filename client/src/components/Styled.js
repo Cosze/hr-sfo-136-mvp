@@ -177,11 +177,16 @@ export const ButtonHolder = styled.div`
   border: 1px solid red;
 `;
 
-export const Close = styled.button`
-  background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png);
-  background-color: #eee;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 50px;
-  height: 50px;
+export const Close = styled.div`
+  width: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+export const CloseImage = styled.img`
+  width: 100%;
 `;
