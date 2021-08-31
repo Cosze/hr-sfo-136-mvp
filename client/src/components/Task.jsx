@@ -107,7 +107,7 @@ const Task = ({tasks, who, refresh}) => {
 
                 {process === 'open' ? <Close onClick={closeModal}><CloseImage src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' alt='close button' /></Close> : null}
                 <ButtonHolder>
-                  {who === 'client' ? <button onClick={() => {
+                  {who === 'client' && (selection.status === 'open' || selection.status === 'completed') ? <button onClick={() => {
                       cancelRequest(selection.id);
                       // console.log(refresh);
                       refresh(`${userContext}`, tasks[1]);
