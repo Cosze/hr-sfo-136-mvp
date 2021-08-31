@@ -106,12 +106,26 @@ const parseTime = (string) => {
 
 export const convertTime = (string) => {
     string = Number(string);
+    let string2 = string + 3600000;
     string = new Date(string);
+    string2 = new Date(string2);
     string = string.toString();
+    string2 = string2.toString();
     let split = string.split(' ');
+    let split2 = string2.split(' ');
     let hours = split[4];
+    let hours2 = split2[4];
     let date = `${split[1]} ${split[2]}`;
-    string = parseTime(hours) + ' - ' + date;
+    let date2 = `${split2[1]} ${split2[2]}`;
+    let parsedHour = parseTime(hours);
+    let parsedHour2 = parseTime(hours2);
+    let hourOnly = parsedHour.substring(0, parsedHour.length - 2);
+    let hourOnly2 = parsedHour2.substring(0, parsedHour2.length - 2);
+    let ampm = parsedHour.substring(parsedHour.length - 2);
+    let ampm2 = parsedHour2.substring(parsedHour2.length - 2);
+    let combinedHours = ampm === ampm2 ? `${hourOnly} - ${hourOnly2} ${ampm}` : `${hourOnly}${ampm} - ${hourOnly2}${ampm2}`;
+    let combinedDate = date === date2 ? date : `${date} - ${date2}`;
+    string = [combinedHours, combinedDate];
     return string;
 };
 

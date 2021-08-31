@@ -53,12 +53,16 @@ const Task = ({tasks, who, refresh}) => {
                 style={customStyles}
                 contentLabel="Example Modal">
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
-                <Taskbox><span style={{margin:'0 1em'}}>{selection.schedule ? convertTime(selection.schedule) : null}</span><Status>{selection.status}</Status></Taskbox>
+                <Taskbox>
+                  <div style={{margin:'0 1em', display: 'flex', flexDirection: 'column',}}>
+                    <span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.8rem'}}>{selection.schedule ? convertTime(selection.schedule)[0] : null}</span>
+                    <span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.8rem'}}>{selection.schedule ? convertTime(selection.schedule)[1] : null}</span>
+                  </div>
+                  <Status>{selection.status}</Status>
+                </Taskbox>
                 <ul>
-                    {/* <li>id - {selection.id}</li> */}
                     <li>Name - {selection.client_name}</li>
                     <li>Room - {selection.room}</li>
-                    {/* <li>schedule - {selection.schedule ? convertTime(selection.schedule) : null}</li> */}
                     <li>Preferences - {selection.preferences}</li>
                     <li>Cleaner - {selection.server_name}</li>
                     <li>Accepted - {selection.time_accepted ? convertTime(selection.time_accepted) : null}</li>
@@ -66,7 +70,7 @@ const Task = ({tasks, who, refresh}) => {
                     <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
                 </ul>
-                {process === 'open' ? <button onClick={closeModal}>close</button> : null}
+                {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
                 {who === 'client' ? <button onClick={() => {
                     cancelRequest(selection.id);
                     // console.log(refresh);
@@ -90,7 +94,7 @@ const Task = ({tasks, who, refresh}) => {
                     setProcess('open');
                     refresh.open(tasks[1]);
                     closeModal();
-                }}>cancel</button>
+                }}>Cancel</button>
                 </> : null}
                 {process === 'started' ? <button onClick={() => {
                     completeRequest(selection.id);
@@ -105,7 +109,8 @@ const Task = ({tasks, who, refresh}) => {
                 return <Taskbox key={index} onClick={() => {
                     setSelection(task);
                     openModal();
-                }}><span style={{margin:'0 1em'}}>{time}</span><Status>{task.status}</Status></Taskbox>;
+                }}><div style={{margin:'0 1em', display: 'flex', flexDirection: 'column',}}><span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.85rem'}}>{time[0]}</span><span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.8rem'}}>{time[1]}</span>
+                  </div><Status>{task.status}</Status></Taskbox>;
             })}
         </div>
     );
