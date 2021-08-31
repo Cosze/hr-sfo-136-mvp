@@ -35,6 +35,11 @@ export const Status = styled.div`
   margin: 0 1em;
   width: 70px;
   height: max-content;
+  ${props => props.modal ? `
+  position: relative;
+  left: 26%;
+  ` : null}
+
 
   ${props => props.isButton ? `&:hover {
     background-color: #7d7;
@@ -129,4 +134,54 @@ export const Filler = styled.div`
   width: max-content;
   height: max-content;
   margin: 10em auto;
+`;
+
+export const ModalView = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em auto;
+  width: 230px;
+  // border: 1px solid red;
+`;
+
+export const InfoTitle = styled.div`
+  text-align: center;
+  font-size: 0.8rem;
+  margin-bottom: 0.3em;
+`;
+
+export const InfoText = styled.div`
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  max-height: 140px;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  // border: 1px solid red;
+  margin-bottom: 0.7em;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${props => props.preferences ? `border: 1px solid #eee;
+  padding: 0.5em;
+  ` : null}
+  `;
+
+export const ButtonHolder = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  border: 1px solid red;
+`;
+
+export const Close = styled.button`
+  background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png);
+  background-color: #eee;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
 `;

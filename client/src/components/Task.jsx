@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime} from './requests';
-import { Taskbox, Status, Filler } from './Styled';
+import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder } from './Styled';
 
 const customStyles = {
     content: {
@@ -37,11 +37,6 @@ const Task = ({tasks, who, refresh}) => {
       setIsOpen(true);
     }
 
-    function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-      subtitle.style.color = '#f00';
-    }
-
     function closeModal() {
       setIsOpen(false);
     }
@@ -49,10 +44,26 @@ const Task = ({tasks, who, refresh}) => {
         <div>
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 style={customStyles}
                 contentLabel="Example Modal">
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
+                  <Status modal>{selection.status}</Status>
+                  {who === 'server' ? null : (
+                  <ModalView>
+                    {selection.server_name ? (
+                    <div style={{width: '30%',}}>
+                      <img src='https://static.thenounproject.com/png/2366460-200.png' alt='server image' style={{width: '100%'}}></img>
+                    </div>
+                    ) : null}
+                    <InfoText>{selection.server_name}</InfoText>
+                    <InfoText style={{fontSize: '0.8rem'}}>Tip: ${selection.tip}</InfoText>
+                    <InfoTitle>Preferences: </InfoTitle>
+                    {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
+                    <InfoText>N/A</InfoText>
+                    }
+
+                  </ModalView>
+                  )}
+                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Task details</h2>
                 <Taskbox>
                   <div style={{margin:'0 1em', display: 'flex', flexDirection: 'column',}}>
                     <span style={{whiteSpace: 'nowrap', maxWidth: '100px', fontSize: '0.8rem'}}>{selection.schedule ? convertTime(selection.schedule)[0] : null}</span>
@@ -69,39 +80,41 @@ const Task = ({tasks, who, refresh}) => {
                     <li>Started - {selection.time_started ? convertTime(selection.time_started) : null}</li>
                     <li>Completed - {selection.time_completed ? convertTime(selection.time_completed) : null}</li>
                     <li>tip - {selection.tip}</li>
-                </ul>
-                {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
-                {who === 'client' ? <button onClick={() => {
-                    cancelRequest(selection.id);
-                    // console.log(refresh);
-                    refresh(`${userContext}`, tasks[1]);
-                    closeModal();
-                    }}>Cancel request</button> : null}
-                {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
-                    acceptRequest(`${userContext}`, selection.id);
-                    setProcess('accepted');
-                    selection.status = 'accepted';
-                    refresh.open(tasks[1]);
-                }}>Accept</button> : null}
-                {process === 'accepted' ? <>
-                <button onClick={() => {
-                    startRequest(selection.id);
-                    setProcess('started');
-                    selection.status = 'started';
-                }}>Start</button>
-                <button onClick={() => {
-                    cancelAccept(selection.id);
-                    setProcess('open');
-                    refresh.open(tasks[1]);
-                    closeModal();
-                }}>Cancel</button>
-                </> : null}
-                {process === 'started' ? <button onClick={() => {
-                    completeRequest(selection.id);
-                    setProcess('open');
-                    refresh.open(tasks[1]);
-                    closeModal();
-                }}>Complete</button> : null}
+                </ul> */}
+                <ButtonHolder>
+                  {process === 'open' ? <button onClick={closeModal}>Close</button> : null}
+                  {who === 'client' ? <button onClick={() => {
+                      cancelRequest(selection.id);
+                      // console.log(refresh);
+                      refresh(`${userContext}`, tasks[1]);
+                      closeModal();
+                      }}>Cancel request</button> : null}
+                  {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
+                      acceptRequest(`${userContext}`, selection.id);
+                      setProcess('accepted');
+                      selection.status = 'accepted';
+                      refresh.open(tasks[1]);
+                  }}>Accept</button> : null}
+                  {process === 'accepted' ? <>
+                  <button onClick={() => {
+                      startRequest(selection.id);
+                      setProcess('started');
+                      selection.status = 'started';
+                  }}>Start</button>
+                  <button onClick={() => {
+                      cancelAccept(selection.id);
+                      setProcess('open');
+                      refresh.open(tasks[1]);
+                      closeModal();
+                  }}>Cancel</button>
+                  </> : null}
+                  {process === 'started' ? <button onClick={() => {
+                      completeRequest(selection.id);
+                      setProcess('open');
+                      refresh.open(tasks[1]);
+                      closeModal();
+                  }}>Complete</button> : null}
+                </ButtonHolder>
              </Modal>
              {tasks[0].length === 0 ? <Filler>Nothing available</Filler> :
               tasks[0].map((task, index) => {
