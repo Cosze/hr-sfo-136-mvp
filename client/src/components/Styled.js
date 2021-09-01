@@ -221,7 +221,7 @@ export const StyledButton = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 5px;
   border: none;
-  background-color: ${props => props.cancel ? '#eee' : '#8e8'};
+  background-color: ${props => props.cancel ? '#eee' : '#dfd'};
   padding: 0.5em 1em;
   &:hover {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
