@@ -221,9 +221,23 @@ export const StyledButton = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 5px;
   border: none;
-  background-color: ${props => props.cancel ? '#eee' : '#dfd'};
+  background-color: ${props => props.cancel ? '#eee' : '#ddf'};
   padding: 0.5em 1em;
   &:hover {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   }
+`;
+
+export const FormConfirmTitle = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1em;
+`;
+
+export const FormConfirmText = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-bottom: 1em;
 `;

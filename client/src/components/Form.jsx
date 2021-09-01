@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { postRequest } from './requests';
-import { Forms, Status, Input } from './Styled';
+import { Forms, Status, Input, StyledButton, ButtonHolder, FormConfirmTitle, FormConfirmText } from './Styled';
 
 const customStyles = {
   content: {
@@ -38,7 +38,7 @@ const Form = ({ setRequest }) => {
 
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
-      subtitle.style.color = '#f00';
+      subtitle.style.color = '#118';
     }
 
     function closeModal() {
@@ -51,24 +51,24 @@ const Form = ({ setRequest }) => {
             onAfterOpen={afterOpenModal}
             style={customStyles}
             contentLabel="Example Modal">
-            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Confirmation Window</h2>
-            <div>Ready to submit?</div>
-            <div style={{display: 'flex'}}>
-                <button onClick={closeModal} style={{cursor:'pointer'}}>Cancel</button>
-                <button style={{cursor:'pointer'}} onClick={() => {
-                    const formData = new FormData(document.getElementById('form'));
-                    const formProps = Object.fromEntries(formData);
-                    // convert data into proper format for HTTP request
-                    formProps.room = Number(formProps.room);
-                    formProps.schedule = Date.parse(formProps.schedule);
-                    formProps.preferences = formProps.preferences === '' ? null : formProps.preferences;
-                    formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
-                    postRequest(formProps);
-                    document.getElementById('form').reset();
-                    setRequest(false);
-                    closeModal();
-                }}>Confirm</button>
-            </div>
+            <FormConfirmTitle ref={(_subtitle) => (subtitle = _subtitle)}>Confirm request?</FormConfirmTitle>
+            <FormConfirmText>You can still cancel and make a new one after.</FormConfirmText>
+            <ButtonHolder>
+                <StyledButton style={{cursor:'pointer'}} onClick={() => {
+                  const formData = new FormData(document.getElementById('form'));
+                  const formProps = Object.fromEntries(formData);
+                  // convert data into proper format for HTTP request
+                  formProps.room = Number(formProps.room);
+                  formProps.schedule = Date.parse(formProps.schedule);
+                  formProps.preferences = formProps.preferences === '' ? null : formProps.preferences;
+                  formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
+                  postRequest(formProps);
+                  document.getElementById('form').reset();
+                  setRequest(false);
+                  closeModal();
+                }}>Confirm</StyledButton>
+                <StyledButton onClick={closeModal} style={{cursor:'pointer'}} cancel>Cancel</StyledButton>
+            </ButtonHolder>
         </Modal>
         <Forms
             id='form'
@@ -96,7 +96,7 @@ const Form = ({ setRequest }) => {
               <Input placeholder='0' type='number' name='tip' min='0'></Input>
             </label>
 
-            <Status as='button' isButton style={{cursor:'pointer', alignSelf: 'center', border: 'none'}}>Submit</Status>
+            <StyledButton isButton style={{cursor:'pointer', alignSelf: 'center', border: 'none'}}>Submit</StyledButton>
         </Forms>
         </>
     );
