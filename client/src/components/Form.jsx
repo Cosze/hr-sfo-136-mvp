@@ -26,7 +26,7 @@ const customStyles = {
   }
   };
 
-const Form = () => {
+const Form = ({ setRequest }) => {
     const { userContext } = useContext(UserContext);
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -65,6 +65,7 @@ const Form = () => {
                     formProps.tip = formProps.tip === '' ? null : Number(formProps.tip);
                     postRequest(formProps);
                     document.getElementById('form').reset();
+                    setRequest(false);
                     closeModal();
                 }}>Confirm</button>
             </div>

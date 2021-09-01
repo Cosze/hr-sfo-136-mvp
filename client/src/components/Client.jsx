@@ -23,7 +23,7 @@ const Client = () => {
         {/* <div>Client</div> */}
         {/* <Header>{request ? 'New Request' : 'Scheduled Cleanings'}</Header> */}
         <SubMain>
-         {request ? <Form /> : <Task tasks={[tasks, setTasks]} who='client' refresh={getRequest}/>}
+         {request ? <Form setRequest={setRequest} /> : <Task tasks={[tasks, setTasks]} who='client' refresh={getRequest}/>}
         </SubMain>
 
         <ButtonContainer>

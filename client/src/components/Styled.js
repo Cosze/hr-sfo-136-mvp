@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 
 export const MainHeader = styled.header`
+  font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   width: 70%;
   padding-top: 0.5em;
 `;
 
 export const Header = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   border: 1px solid black;
 `;
 
 export const SubMain = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,6 +31,7 @@ export const SubMain = styled.div`
 `;
 
 export const Status = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #8e8;
   ${props => props.status === 'open' ? `background-color: #8ee;` : null}
   ${props => props.status === 'accepted' ? `background-color: #ee8;` : null}
@@ -37,7 +41,7 @@ export const Status = styled.div`
   text-align: center;
   border-radius: 5px;
   margin: 0 1em;
-  width: 70px;
+  width: 73px;
   height: max-content;
   ${props => props.modal ? `
   position: relative;
@@ -51,6 +55,7 @@ export const Status = styled.div`
 `;
 
 export const Tab = styled.button`
+  font-family: Arial, Helvetica, sans-serif;
   padding: 1em;
   text-align: center;
   width: 100%;
@@ -65,6 +70,7 @@ export const Tab = styled.button`
 `;
 
 export const Taskbox = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,12 +84,14 @@ export const Taskbox = styled.div`
 `;
 
 export const Forms = styled.form`
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
 export const Select = styled.select`
+  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 1em;
   height: 34px;
   border: 1px solid black;
@@ -97,6 +105,7 @@ export const Select = styled.select`
 `;
 
 export const Input = styled.input`
+  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 1em;
   border: ${props => props.login ? '1px solid black' : 'none'};
 
@@ -113,11 +122,13 @@ export const Input = styled.input`
 `;
 
 export const SignInButton = styled.button`
+  font-family: Arial, Helvetica, sans-serif;
   width: 80%;
   margin: 0 auto 1.5em;
 `;
 
 export const ButtonContainer = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #fff;
   display: flex;
   width: 100%;
@@ -128,6 +139,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Splitter = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   width: 1px;
   background-color: #888;
   height: 50%;
@@ -135,12 +147,14 @@ export const Splitter = styled.div`
 `;
 
 export const Filler = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   width: max-content;
   height: max-content;
   margin: 10em auto;
 `;
 
 export const ModalView = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,6 +164,7 @@ export const ModalView = styled.div`
 `;
 
 export const InfoTitle = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 0.8rem;
   margin-bottom: 0.3em;
@@ -157,6 +172,7 @@ export const InfoTitle = styled.div`
 `;
 
 export const InfoText = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   text-align: center;
   width: 100%;
@@ -175,6 +191,7 @@ export const InfoText = styled.div`
   `;
 
 export const ButtonHolder = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   width: 100%;
   justify-content: space-evenly;
@@ -182,6 +199,7 @@ export const ButtonHolder = styled.div`
 `;
 
 export const Close = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   top: 2%;
   right: 5%;
@@ -195,5 +213,17 @@ export const Close = styled.div`
 `;
 
 export const CloseImage = styled.img`
+  font-family: Arial, Helvetica, sans-serif;
   width: 100%;
+`;
+
+export const StyledButton = styled.button`
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  border: none;
+  background-color: ${props => props.cancel ? '#eee' : '#8e8'};
+  padding: 0.5em 1em;
+  &:hover {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  }
 `;

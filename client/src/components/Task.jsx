@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from './UserContext.jsx';
 import Modal from 'react-modal';
 import { updateRequest, cancelRequest, acceptRequest, startRequest, completeRequest, cancelAccept, convertTime, onlyConvertTime} from './requests';
-import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder, Close, CloseImage } from './Styled';
+import { Taskbox, Status, Filler, ModalView, InfoText, InfoTitle, ButtonHolder, Close, CloseImage, StyledButton } from './Styled';
 
 const customStyles = {
     content: {
@@ -14,6 +14,7 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
       width: '235px',
       height: '400px',
+      boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
     },
     overlay: {
       left: '50%',
@@ -50,7 +51,7 @@ const Task = ({tasks, who, refresh}) => {
                   {who === 'server' ? selection.status !== 'completed' ? (
                     <ModalView>
                     <InfoText style={{fontSize: '1rem'}}>{selection.client_name}</InfoText>
-                    <InfoText style={{fontSize: '0.8rem'}}>Room: ${selection.room}</InfoText>
+                    <InfoText style={{fontSize: '0.8rem'}}>Room: {selection.room}</InfoText>
                     <InfoTitle>Preferences: </InfoTitle>
                     {selection.preferences ? <InfoText preferences>{selection.preferences}</InfoText> :
                     <InfoText>N/A</InfoText>
@@ -107,37 +108,37 @@ const Task = ({tasks, who, refresh}) => {
 
                 {process === 'open' ? <Close onClick={closeModal}><CloseImage src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' alt='close button' /></Close> : null}
                 <ButtonHolder>
-                  {who === 'client' && (selection.status === 'open' || selection.status === 'completed') ? <button onClick={() => {
+                  {who === 'client' && (selection.status === 'open' || selection.status === 'completed') ? <StyledButton onClick={() => {
                       cancelRequest(selection.id);
                       // console.log(refresh);
                       refresh(`${userContext}`, tasks[1]);
                       closeModal();
-                      }}>{selection.status !== 'completed' ? 'Cancel request' : 'Remove'}</button> : null}
-                  {who === 'server' && process === 'open' && selection.status === 'open' ? <button onClick={() => {
+                      }} cancel>{selection.status !== 'completed' ? 'Cancel request' : 'Remove'}</StyledButton> : null}
+                  {who === 'server' && process === 'open' && selection.status === 'open' ? <StyledButton onClick={() => {
                       acceptRequest(`${userContext}`, selection.id);
                       setProcess('accepted');
                       selection.status = 'accepted';
                       refresh.open(tasks[1]);
-                  }}>Accept</button> : null}
+                  }}>Accept</StyledButton> : null}
                   {process === 'accepted' ? <>
-                  <button onClick={() => {
+                  <StyledButton onClick={() => {
+                      startRequest(selection.id);
+                      setProcess('started');
+                      selection.status = 'started';
+                  }}>Start</StyledButton>
+                  <StyledButton onClick={() => {
                     cancelAccept(selection.id);
                     setProcess('open');
                     refresh.open(tasks[1]);
                     closeModal();
-                  }}>Cancel</button>
-                  <button onClick={() => {
-                      startRequest(selection.id);
-                      setProcess('started');
-                      selection.status = 'started';
-                  }}>Start</button>
+                  }} cancel>Cancel</StyledButton>
                   </> : null}
-                  {process === 'started' ? <button onClick={() => {
+                  {process === 'started' ? <StyledButton onClick={() => {
                       completeRequest(selection.id);
                       setProcess('open');
                       refresh.open(tasks[1]);
                       closeModal();
-                  }}>Complete</button> : null}
+                  }}>Complete</StyledButton> : null}
                 </ButtonHolder>
              </Modal>
              {tasks[0].length === 0 ? <Filler>Nothing available</Filler> :
