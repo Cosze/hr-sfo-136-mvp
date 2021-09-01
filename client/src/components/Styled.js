@@ -125,6 +125,7 @@ export const SignInButton = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   width: 80%;
   margin: 0 auto 1.5em;
+  cursor: pointer;
 `;
 
 export const ButtonContainer = styled.div`
@@ -223,6 +224,7 @@ export const StyledButton = styled.button`
   border: none;
   background-color: ${props => props.cancel ? '#eee' : '#ddf'};
   padding: 0.5em 1em;
+  cursor: pointer;
   &:hover {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   }
