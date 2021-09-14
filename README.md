@@ -4,7 +4,7 @@
 
 ## Motivation
 
-From my experience of staying at hotels, it was sometimes very annoying to have to remember to put up the 'Do Not Disturb' sign and sometimes I would only want towels or blankets changed but there was no way to tell the room cleaner that unless I was in the room when they come by.
+From my experience of staying at hotels, it was sometimes very annoying to have to remember to put up the 'Do Not Disturb' sign and sometimes I would only want towels or blankets changed but there was no way to tell the room cleaner that unless I was in the room when they come by. I was inspired by this to create an app where clients can choose when and how they want their room serviced.
 
 ## Technologies Used
 
